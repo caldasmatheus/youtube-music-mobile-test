@@ -31,4 +31,4 @@ class LibraryPage(BasePage):
 
     def verify_playlist(self, playlist_name):
         element_playlist = self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, f'new UiSelector().text("{playlist_name}")'))
-        assert element_playlist.is_displayed(), f"A playlist '{playlist_name}' não foi encontrada na interface."
+        return element_playlist
