@@ -32,3 +32,12 @@ class LibraryPage(BasePage):
     def verify_playlist(self, playlist_name):
         element_playlist = self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, f'new UiSelector().text("{playlist_name}")'))
         return element_playlist
+
+    def playlist_options(self):
+        self.driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,"new UiSelector().resourceId(\"com.google.android.apps.youtube.music:id/contextual_menu_anchor\").instance(1)").click()
+
+    def click_delete_playlist(self):
+        self.click_element_by_text("Delete playlist")
+
+    def confirm_delete_playlist(self):
+        self.wait_element((AppiumBy.ID, "android:id/button1")).click()
