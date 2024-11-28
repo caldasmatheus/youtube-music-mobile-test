@@ -1,4 +1,5 @@
 from appium.webdriver.common.appiumby import AppiumBy
+from selenium.webdriver import Keys
 
 from pages.basePage import BasePage
 
@@ -41,3 +42,24 @@ class LibraryPage(BasePage):
 
     def confirm_delete_playlist(self):
         self.wait_element((AppiumBy.ID, "android:id/button1")).click()
+
+    def select_playlist(self, playlist_name):
+        self.click_element_by_text(playlist_name)
+
+    def click_add_a_song(self):
+        self.click_element_by_text("Add a song")
+
+    def search_song(self):
+        song = self.wait_element((AppiumBy.ID, "com.google.android.apps.youtube.music:id/search_edit_text"))
+        song.click()
+        song.send_keys("musicas sertanejas")
+        self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().resourceId(\"com.google.android.apps.youtube.music:id/search_type_icon\").instance(0)")).click()
+
+    def add_song_in_playlist(self):
+        addSong = self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().resourceId(\"com.google.android.apps.youtube.music:id/two_column_item_highlight\").instance(0)"))
+        addSong.click()
+
+    def verify_song_in_playlist(self):
+        song_element = self.wait_element((AppiumBy.ID, "com.google.android.apps.youtube.music:id/message_subtext"))
+        song_text = song_element.text
+        return song_text
