@@ -26,6 +26,7 @@ class LibraryPage(BasePage):
 
     def create_playlist(self):
         self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, "Create").click()
+        self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, f'new UiSelector().text("Add a song")'))
 
     def select_playlist_menu(self):
         self.click_element_by_text("Playlists")
@@ -56,10 +57,26 @@ class LibraryPage(BasePage):
         self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().resourceId(\"com.google.android.apps.youtube.music:id/search_type_icon\").instance(0)")).click()
 
     def add_song_in_playlist(self):
-        addSong = self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().resourceId(\"com.google.android.apps.youtube.music:id/two_column_item_highlight\").instance(0)"))
-        addSong.click()
+        add_song = self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().resourceId(\"com.google.android.apps.youtube.music:id/two_column_item_highlight\").instance(0)"))
+        add_song.click()
 
     def verify_song_in_playlist(self):
         song_element = self.wait_element((AppiumBy.ID, "com.google.android.apps.youtube.music:id/message_subtext"))
         song_text = song_element.text
         return song_text
+
+    def click_edit_playlist(self):
+        self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Edit playlist")')).click()
+
+    def enter_new_title(self, title):
+        new_title = self.wait_element((AppiumBy.ACCESSIBILITY_ID, "Title"))
+        new_title.clear()
+        new_title.send_keys(title)
+
+    def enter_new_description(self, description):
+        new_description = self.wait_element((AppiumBy.ACCESSIBILITY_ID, "Description (optional)"))
+        new_description.clear()
+        new_description.send_keys(description)
+
+    def click_done(self):
+        self.wait_element((AppiumBy.ID, "com.google.android.apps.youtube.music:id/done_editing")).click()
