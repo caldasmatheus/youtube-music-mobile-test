@@ -80,3 +80,9 @@ class LibraryPage(BasePage):
 
     def click_done(self):
         self.wait_element((AppiumBy.ID, "com.google.android.apps.youtube.music:id/done_editing")).click()
+        
+    def remove_music_song(self):
+        self.wait_element((AppiumBy.ACCESSIBILITY_ID, "Menu")).click()
+        
+    def remove_confirm_music(self):
+        self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().text(\"Remove from playlist\")")).click()
