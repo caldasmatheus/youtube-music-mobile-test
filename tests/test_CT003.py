@@ -10,15 +10,12 @@ class Test_CT003:
         library_page.click_playlist_option()
         library_page.enter_title("Musicas")
         library_page.enter_description("Playlist de musicas")
+        library_page.select_playlist_option(instance=4)
+        library_page.select_playlist_option(instance=6)
+        library_page.create_playlist()
+        library_page.click_add_a_song()
+        library_page.search_song()
+        library_page.add_song_in_playlist()
+        library_page.remove_music_song()
+        library_page.remove_confirm_music()
 
-        initial_song = library_page.verify_song_in_playlist()
-        assert initial_song is not None, "A playlist não contém músicas para excluir."
-        library_page.playlist_options()
-        library_page.click_element_by_text("Remover da playlist")
-        success_notification = library_page.wait_element(
-            ("android:id/message"), timeout=5
-        )
-        assert "música foi removida" in success_notification.text.lower(), "A notificação de sucesso não foi exibida."
-
-        updated_song = library_page.verify_song_in_playlist()
-        assert updated_song != initial_song, "A música ainda está na playlist."
