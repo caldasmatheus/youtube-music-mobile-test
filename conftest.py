@@ -7,7 +7,7 @@ from pages.libraryPage import LibraryPage
 def pytest_addoption(parser):
     parser.addoption("--device", default='Android Emulator', help='Select device to run tests.')
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def appium_driver(request):
     device = request.config.getoption('device')
     options = AppiumOptions()

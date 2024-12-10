@@ -1,5 +1,4 @@
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.webdriver import Keys
 
 from pages.basePage import BasePage
 
@@ -12,12 +11,12 @@ class LibraryPage(BasePage):
         self.click_element_by_text("Playlist")
 
     def enter_title(self, title):
-        title_field = self.driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Title")')
+        title_field = self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Title")'))
         title_field.click()
         title_field.send_keys(title)
 
     def enter_description(self, description):
-        description_field = self.driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Description")')
+        description_field = self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Description")'))
         description_field.click()
         description_field.send_keys(description)
 
