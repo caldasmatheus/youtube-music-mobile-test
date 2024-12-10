@@ -21,10 +21,10 @@ class LibraryPage(BasePage):
         description_field.send_keys(description)
 
     def select_playlist_option(self, instance):
-        self.driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, f'new UiSelector().className("android.view.ViewGroup").instance({instance})').click()
+        self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, f'new UiSelector().className("android.view.ViewGroup").instance({instance})')).click()
 
     def create_playlist(self):
-        self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, "Create").click()
+        self.wait_element((AppiumBy.ACCESSIBILITY_ID, "Create")).click()
         self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR, f'new UiSelector().text("Add a song")'))
 
     def select_playlist_menu(self):
@@ -35,7 +35,7 @@ class LibraryPage(BasePage):
         return element_playlist
 
     def playlist_options(self):
-        self.driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,"new UiSelector().resourceId(\"com.google.android.apps.youtube.music:id/contextual_menu_anchor\").instance(1)").click()
+        self.wait_element((AppiumBy.ANDROID_UIAUTOMATOR,"new UiSelector().resourceId(\"com.google.android.apps.youtube.music:id/contextual_menu_anchor\").instance(1)")).click()
 
     def click_delete_playlist(self):
         self.click_element_by_text("Delete playlist")

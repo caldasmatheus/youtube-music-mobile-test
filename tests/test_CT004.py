@@ -1,15 +1,19 @@
 import pytest
+from faker import Faker
 
 @pytest.mark.usefixtures("open_app")
 class Test_CT004:
 
     def test_edit_playlist(self, request):
+        faker = Faker('pt_BR')
         menu_page, library_page = request.getfixturevalue('open_app')
         menu_page.go_to_library_page()
         library_page.click_new_button()
         library_page.click_playlist_option()
-        library_page.enter_title("Playlist criada")
-        library_page.enter_description("Playlist de musicas a ser editada")
+        title = faker.sentence(nb_words=2)
+        description = faker.paragraph(nb_sentences=1)
+        library_page.enter_title(title)
+        library_page.enter_description(description)
         library_page.select_playlist_option(instance=4)
         library_page.select_playlist_option(instance=6)
         library_page.create_playlist()
