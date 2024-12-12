@@ -10,8 +10,6 @@ class Test_CT005:
         library_page.click_playlist_option()
         playlist_name = library_page.enter_title("Delete Playlist")
         library_page.enter_description("Playlist de teste a ser deletada")
-        library_page.select_playlist_option(instance=4)
-        library_page.select_playlist_option(instance=6)
         library_page.create_playlist()
         menu_page.go_to_home_page()
         menu_page.go_to_library_page()

@@ -14,8 +14,6 @@ class Test_CT001:
         description = faker.paragraph(nb_sentences=1)
         library_page.enter_title(title)
         library_page.enter_description(description)
-        library_page.select_playlist_option(instance=4)
-        library_page.select_playlist_option(instance=6)
         library_page.create_playlist()
         menu_page.go_to_home_page()
         menu_page.go_to_library_page()
