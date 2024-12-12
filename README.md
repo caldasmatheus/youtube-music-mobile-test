@@ -33,6 +33,12 @@ pip install -r requirements.txt
 
 Para executar o projeto **youtube-music-mobile-test** siga as etapas:
 
+* Inicie o Appium:
+
+```
+npx appium
+```
+
 * Exemplo de execução de todos os cenários de testes:
 
 ```
