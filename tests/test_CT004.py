@@ -14,8 +14,6 @@ class Test_CT004:
         description = faker.paragraph(nb_sentences=1)
         library_page.enter_title(title)
         library_page.enter_description(description)
-        library_page.select_playlist_option(instance=4)
-        library_page.select_playlist_option(instance=6)
         library_page.create_playlist()
         library_page.click_edit_playlist()
         library_page.enter_new_title("Playlist editada")

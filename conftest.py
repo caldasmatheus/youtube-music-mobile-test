@@ -3,6 +3,7 @@ from appium import webdriver
 from appium.options.common.base import AppiumOptions
 from pages.menuPage import MenuPage
 from pages.libraryPage import LibraryPage
+from utils.utils import take_screenshot
 
 def pytest_addoption(parser):
     parser.addoption("--device", default='Android Emulator', help='Select device to run tests.')
@@ -24,7 +25,9 @@ def appium_driver(request):
         "appium:appActivity": "com.google.android.apps.youtube.music.activities.MusicActivity"
     })
     driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
+
     yield driver
+    take_screenshot(driver, request.node.name)
     driver.quit()
 
 @pytest.fixture
